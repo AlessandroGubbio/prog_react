@@ -1,0 +1,19 @@
+.login{
+  margin-left: 70px;
+  margin-top: 70px;
+}
+.log, .sign{
+  width: 257px;
+  height: 25px;
+  margin-top: 7px;
+}
+input{
+  margin-bottom: 7px;
+  height: 35px;
+  width: 250px;
+  font-size: 20px;
+}
+.a_signup{
+  color: black;
+  text-decoration: none;
+}

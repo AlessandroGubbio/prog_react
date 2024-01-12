@@ -1,0 +1,68 @@
+body{
+  background-color: rgb(24, 24, 24);
+}
+div{
+  color: white;
+}
+.button_div{
+  margin: 25px;
+  width: 100%;
+}
+
+.navbar, hr{
+  margin-left: 16px;
+  display: flex;
+  justify-content: space-between;  
+}
+.nav_title{
+  width: 200px;
+
+}
+.nav_a{
+  margin-top: 60px;
+  margin-right: 10px;
+}
+.a_login{
+  color: white;
+  text-decoration: none;
+}
+
+.cpu_box, .ram_box, .disk_box{
+  width: 500px;
+}
+.cpu_info, .ram_info, .disk_info{
+  margin: 25px;
+  justify-content: center;
+  display: grid;
+  border: 2px solid white;
+  
+}
+button{
+  height: 28px;
+  width: 175px;
+}
+hr{
+  color: white;
+}
+.file, .dir{
+  margin-right: 10px;
+  height: 22px;
+}
+.file_div, .dir_div{
+  display: flex;
+}
+a{
+  text-decoration: underline;
+  color: white;
+}
+ul{
+  margin-left: 25px;
+  border: 2px solid white;
+  width: 403px;
+
+}
+
+li{
+  list-style: decimal;
+  margin: 20px;
+}
