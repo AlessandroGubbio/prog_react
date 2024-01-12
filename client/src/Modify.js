@@ -7,21 +7,23 @@ function Modify () {
   const [password, setPassword] = useState("")
   const [user, setUser] = useState("")
   const [pass, setPass] = useState("")
+  const [error, setError] = useState('');
   const navigate = useNavigate()
 
   const modify = async () =>{
     try {
-      axios.post("/modify", {username, password, user, pass})
+      await axios.post("/modify", {username, password, user, pass})
       navigate("/Info")
       
     } catch (err) {
+      setError('Invalid email or password. Modification unsuccesful');
       console.log(err)
     }
   }
 
   const deleteU = () =>{
     try {
-      axios.post("/delete", {username, password})
+      axios.post("/delete", {user, pass})
       navigate("/Login")
       
     } catch (err) {
@@ -41,6 +43,7 @@ function Modify () {
     </div>
     <hr></hr>
     <div className='login'>
+      <p style={{color: 'red'}}>{error}</p>
       <input value={user} type='text' placeholder='Previous Username' onChange={(e) => setUser(e.target.value)}></input>
       <br/>
       <input value={pass} type='text' placeholder='Previous Password' onChange={(e) => setPass(e.target.value)}></input>

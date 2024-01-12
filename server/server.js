@@ -142,8 +142,13 @@ app.post('/modify', async (req, res)=>{
   try {
     const {username, password, user, pass} = req.body;
 
-    client.query("UPDATE users SET (username, password) WHERE username=\"user\" AND password=\"pass\" VALUES($1, $2, $3, $4) " 
+    const validate = client.query("UPDATE users SET username=$1, password=$2 WHERE username=$3 AND password=$4" 
     , [username, password, user, pass]);
+    if((await validateUser).rows.length > 0){
+      res.json({ success: true, message: 'Modification successful' });
+    }else{
+      res.status(401).json({ success: false, message: 'Invalid username or password' });
+    }
   } catch (error) {
     console.error('Error modifying info:', error);
       res.status(500).json({ success: false, message: 'Internal Server Error' });
@@ -152,8 +157,8 @@ app.post('/modify', async (req, res)=>{
 
 app.post('/delete', async (req, res)=>{
   try {
-    const {username, password} = req.body;
-    client.query("DELETE FROM users WHERE username = $1 AND password= $2", [username, password])
+    const {user, pass} = req.body;
+    client.query("DELETE FROM users WHERE username = $1 AND password= $2", [user, pass])
   } catch (error) {
     console.error('Error modifying info:', error);
       res.status(500).json({ success: false, message: 'Internal Server Error' });
