@@ -1,0 +1,45 @@
+div{
+    color:white;
+}
+span{
+    margin-right: 20px;
+    
+}
+.crud{
+    margin-bottom: 5px;
+}
+.form_but{
+    display: block;
+    align-content: end;
+}
+.acc {
+    display: flex;
+
+}
+.users_div{
+    margin-left: 200px;
+    
+}
+
+.users{
+    border: 2px solid white;
+    margin: 0px;
+}
+.span_user{
+    margin-left: 20px;
+    text-decoration: underline;
+}
+
+.form_but{
+    display: flex;
+}
+.buttons{
+    margin-left: 50px;
+}
+.input_crud{
+    margin-left: 10px;
+}
+.crud{
+    height: 45px;
+    width: 200px;
+}

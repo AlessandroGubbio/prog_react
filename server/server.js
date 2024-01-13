@@ -64,7 +64,8 @@ app.get("/ram", (req, res)=>{
 
 app.post("/readFile", (req, res)=>{
   const file = req.body.fileName;
-  const paths = 'C:/Users/Studente1.1/Downloads/tmp/';
+  //const paths = 'C:/Users/Studente1.1/Downloads/tmp/';
+  const paths = "C:\Users\agubb\Downloads"
   const filepath = paths+file+'.txt';
   fs.readFile(filepath, 'utf-8', (err, data) => {
     if (err) {
@@ -105,6 +106,15 @@ app.post("/readDir", (req, res)=>{
 });
 
 
+app.get('/admin', (req, res) =>{
+  const query = client.query("SELECT * FROM users");
+  query.then(result => {
+    res.json(result.rows);
+  }).catch(error => {
+    console.error(error);
+    res.status(500).send('Error executing query');
+  });
+});
 
 
 
@@ -164,6 +174,8 @@ app.post('/delete', async (req, res)=>{
       res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 })
+
+
 
 
 const port = 5000;

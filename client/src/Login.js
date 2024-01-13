@@ -11,9 +11,12 @@ const Login = () => {
 
   const verify = async () =>{
     try {
-      await axios.post("/Login", {username, password})
-      navigate("/Info")
-      
+      if(username === 'admin' && password === 'admin'){
+        navigate("/Admin")
+      }else{
+        await axios.post("/Login", {username, password})
+        navigate("/Info")
+      }
     } catch (err) {
       setError('Invalid email or password. Please try again.');
       console.log(err)
@@ -40,7 +43,7 @@ const Login = () => {
       <br/>
       
       <button className='log' onClick={verify}>Login</button>
-      <br />
+      <br/>
       <button className='sign' onClick={nav}>Sign Up</button>
     </div>
     </>
