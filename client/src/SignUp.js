@@ -16,8 +16,14 @@ function SignUp () {
       if(username === 'admin' || password === 'admin'){
         setError('Invalid email or password. Please try again.');
       }else{
-        axios.post("/signup", {username, password})
-        navigate("/Info")
+        axios.post("/signup", {username, password}).then(() => {
+          navigate('/Info'); 
+        })
+        .catch(err => {
+          setError('Username not available. Please try a different one')
+          console.log(err);
+        });
+        
       }
     } catch (err) {
       console.log(err)

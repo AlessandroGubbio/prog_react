@@ -9,6 +9,7 @@ function Admin (){
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
   const [hide, setHide] = useState(false);
 
 
@@ -24,15 +25,38 @@ function Admin (){
 
   const create = () =>{
     try {
-      axios.post("/signup", {username, password})
-      setUsername('')
-      setPassword('')
+      axios.post("/signup", {username, password}).then(
+        setUsername(''),
+        setPassword(''),
+        setSuccess('User successfully Created')
+      )
+      .catch(err => {
+        setError('Username not available. Please try a different one')
+        console.log(err);
+      });
     } catch (error) {
-      //TODO
       setError('This Account already exists');
       console.log(error)
-    }
+    } 
+  }
+
+  const modify = () =>{
     
+  }
+
+  const deleteU = () =>{
+    try {
+      axios.post("/deleteU", {username}).then(
+        setUsername(''),
+        setPassword(''),
+        setSuccess('The User has been Successfully Deleted')
+      ).catch(err =>{
+        setError('')
+        console.log(err)
+      })
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
@@ -46,7 +70,7 @@ function Admin (){
       <hr></hr>
     <div className='login'>
       <div className='acc'>
-      <button className='show_button' onClick={showAccounts}>Show all Accounts</button>
+      <button className='show_button' onClick={showAccounts}>Show all Users</button>
       {hide && accounts &&(
         <div className='users_div'>
           <ul className='users'>
@@ -62,20 +86,27 @@ function Admin (){
       <br/>
       <br/>
       
-      <h2>Insert account information </h2>
+      <h2>Account information </h2>
+      <hr className='hr_s'></hr>
+      
       <div className='form_but'>
+        <div><span className='nn'>Create and Update:</span> Insert username and password</div>
+        <br/>
+        <div><span className='nn'>Delete:</span> Insert username</div>
         <div className='input_crud'>
           <p style={{color: 'red'}}>{error}</p>
-          <input value={username} type='text' placeholder='Username' onChange={(e) => setUsername(e.target.value)}></input>
+          <p style={{color: 'rgb(0, 239, 68)'}}>{success}</p>
+          <input className='i_crud' value={username} type='text' placeholder='Username' onChange={(e) => setUsername(e.target.value)}></input>
           <br/>
-          <input value={password} type='text' placeholder='Password' onChange={(e) => setPassword(e.target.value)}></input>
+          <input className='i_crud' value={password} type='text' placeholder='Password' onChange={(e) => setPassword(e.target.value)}></input>
         </div>
         <div className='buttons'>
-          <button className='crud' onClick={create}>Create</button>
-          <br/>
-          <button className='crud'>Update</button>
-          <br/>
-          <button className='crud'>Delete</button>
+          <button className='crud_c' onClick={create}>Create</button>
+          
+          <button className='crud_u'>Update</button>
+          
+          <button className='crud_d' onClick={deleteU}>Delete</button>
+          
         </div>
       </div>
     </div>

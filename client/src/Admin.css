@@ -5,8 +5,13 @@ span{
     margin-right: 20px;
     
 }
-.crud{
-    margin-bottom: 5px;
+.crud_c, .crud_u, .crud_d{
+    margin-top: 10px;
+    margin-right: 7px;
+    height: 35px;
+    border: none;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    
 }
 .form_but{
     display: block;
@@ -29,17 +34,40 @@ span{
     margin-left: 20px;
     text-decoration: underline;
 }
-
+.i_crud{
+   
+    width: 310px;
+}
+.hr_s{
+    width: 300px;
+}
 .form_but{
-    display: flex;
+    margin-left: 15px;
 }
-.buttons{
-    margin-left: 50px;
-}
-.input_crud{
-    margin-left: 10px;
-}
+
+
+
 .crud{
+    margin-top: 10px;
+    margin-right: 10px;
     height: 45px;
     width: 200px;
+}
+
+
+.crud_c:hover{
+    background-color: rgb(0, 239, 68);
+    color: white;
+}
+.crud_u:hover{
+    background-color: rgb(0, 195, 239);
+    color: white;
+}
+.crud_d:hover{
+    background-color: rgb(255, 0, 55);
+    color: white;
+}
+.nn{
+    margin-right: 3px;
+    text-decoration: underline;
 }

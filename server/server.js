@@ -106,6 +106,8 @@ app.post("/readDir", (req, res)=>{
 });
 
 
+
+
 app.get('/admin', (req, res) =>{
   const query = client.query("SELECT * FROM users");
   query.then(result => {
@@ -152,7 +154,7 @@ app.post('/modify', async (req, res)=>{
   try {
     const {username, password, user, pass} = req.body;
 
-    const validate = client.query("UPDATE users SET username=$1, password=$2 WHERE username=$3 AND password=$4" 
+    const validateUser = client.query("UPDATE users SET username=$1, password=$2 WHERE username=$3 AND password=$4" 
     , [username, password, user, pass]);
     if((await validateUser).rows.length > 0){
       res.json({ success: true, message: 'Modification successful' });
@@ -167,10 +169,20 @@ app.post('/modify', async (req, res)=>{
 
 app.post('/delete', async (req, res)=>{
   try {
-    const {user, pass} = req.body;
-    client.query("DELETE FROM users WHERE username = $1 AND password= $2", [user, pass])
+    const {user} = req.body;
+    client.query("DELETE FROM users WHERE username = $1", [user])
   } catch (error) {
-    console.error('Error modifying info:', error);
+    console.error('Error deleting user:', error);
+      res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+})
+
+app.post('/deleteU', async (req, res)=>{
+  try {
+    const {username} = req.body;
+    client.query("DELETE FROM users WHERE username = $1", [username])
+  } catch (error) {
+    console.error('Error deleting user:', error);
       res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 })

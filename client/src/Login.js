@@ -35,7 +35,7 @@ const Login = () => {
       </div>
       <hr></hr>
     <div className='login'>
-      <p style={{color: 'red'}}>{error}</p>
+      <p style={{color: 'rgb(255, 0, 55)'}}>{error}</p>
       
       <input value={username} type='text' placeholder='Username' onChange={(e) => setUsername(e.target.value)}></input>
       <br/>
