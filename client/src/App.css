@@ -40,7 +40,15 @@ div{
 button{
   height: 28px;
   width: 175px;
+  border: none;
+  transition: background-color 0.5s ease, color 0.4s ease;
 }
+button:hover{
+  background-color: rgb(16, 16, 16);
+  color: white;
+  border: 2px solid white;
+}
+
 hr{
   color: white;
 }
@@ -76,13 +84,20 @@ input:focus{
   margin-top: 7px;
   transition: background-color 0.5s ease;
   border: none;
+  margin-left: 16px;
 }
 .update_b:hover{
-  background-color: rgb(0, 195, 239);
+  background-color: rgb(20, 110, 255);
   color: white;
 }
 .delete_b:hover{
   background-color: rgb(255, 0, 55);
   color: white;
+}
+.input_mod{
+  margin-left: 16px;
+}
+.p_m{
+  margin-left: 30px;
 }
 

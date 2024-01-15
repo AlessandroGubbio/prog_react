@@ -16,7 +16,7 @@ function Modify () {
       navigate("/Info")
       
     } catch (err) {
-      setError('Invalid email or password. Modification unsuccesful');
+      setError('Invalid email or password. Modification unsuccesfull');
       console.log(err)
     }
   }
@@ -42,18 +42,22 @@ function Modify () {
         
     </div>
     <hr></hr>
+    <p className='p_m'>to update the user information fill all fields, to delete the account it is possible to only fill the username</p>
     <div className='login'>
       <p style={{color: 'red'}}>{error}</p>
       <p>Prevoius Account information </p>
-      <input value={user} type='text' placeholder='Previous Username' onChange={(e) => setUser(e.target.value)}></input>
+      <hr className='hr_s'></hr>
+      <input className='input_mod' value={user} type='text' placeholder='Previous Username' onChange={(e) => setUser(e.target.value)}></input>
       <br/>
-      <input value={pass} type='text' placeholder='Previous Password' onChange={(e) => setPass(e.target.value)}></input>
+      <input  className='input_mod'value={pass} type='text' placeholder='Previous Password' onChange={(e) => setPass(e.target.value)}></input>
       <br/>
       <br/>
       <p>New Account information</p>
-      <input value={username} type='text' placeholder='New Username' onChange={(e) => setUsername(e.target.value)}></input>
+      <hr className='hr_s'></hr>
+      <input className='input_mod' value={username} type='text' placeholder='New Username' onChange={(e) => setUsername(e.target.value)}></input>
       <br/>
-      <input value={password} type='text' placeholder='New Password' onChange={(e) => setPassword(e.target.value)}></input>
+      <input className='input_mod' value={password} type='text' placeholder='New Password' onChange={(e) => setPassword(e.target.value)}></input>
+      <br />
       <br />
       <button className='update_b' onClick={modify}>Update</button>
       <br />

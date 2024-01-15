@@ -150,13 +150,13 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-app.post('/modify', async (req, res)=>{
+app.post('/modify', (req, res)=>{
   try {
     const {username, password, user, pass} = req.body;
 
     const validateUser = client.query("UPDATE users SET username=$1, password=$2 WHERE username=$3 AND password=$4" 
     , [username, password, user, pass]);
-    if((await validateUser).rows.length > 0){
+    if((validateUser).rows.length > 0){
       res.json({ success: true, message: 'Modification successful' });
     }else{
       res.status(401).json({ success: false, message: 'Invalid username or password' });
