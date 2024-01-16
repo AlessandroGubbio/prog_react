@@ -5,10 +5,30 @@ span{
     margin-right: 20px;
     
 }
+.flexx{
+    display: flex;
+    align-items: baseline;
+}
+.new_info{
+    margin-left: 50px;
+}
+.up_btn{
+    margin-left: 20px;
+    width: 175px;
+    height: 35px;
+    border: none;
+    transition: background-color 0.5s ease, color 0.4s ease;
+}
+.up_btn:hover{
+    background-color: rgb(20, 110, 255);
+    color: white;
+}
+
 
 .crud_c, .crud_u, .crud_d{
     margin-top: 10px;
     margin-right: 7px;
+    width: 175px;
     height: 35px;
     border: none;
     transition: background-color 0.5s ease, color 0.4s ease;

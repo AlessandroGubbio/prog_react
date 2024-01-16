@@ -87,7 +87,7 @@ const readDir = ()=>{
           - Click here to get the CPU info of the server
         </div>
         <br></br>
-        <button onClick={cpuInfo}>Cpu information</button>
+        <button className='btn_info' onClick={cpuInfo}>Cpu information</button>
         
         {hide && beData && ( //check if the info needs to be shown
         <div className='cpu_box'>
@@ -106,7 +106,7 @@ const readDir = ()=>{
           - Click here to get the RAM info 
         </div>
         <br></br>
-        <button onClick={ramInfo}>Ram information</button>
+        <button className='btn_info' onClick={ramInfo}>Ram information</button>
         {hideRam && beRam && ( //check if the info needs to be shown
         <div className='ram_box'>
           <div className='ram_info'>
@@ -122,7 +122,7 @@ const readDir = ()=>{
           - Click here to get the Disk info 
         </div>
         <br></br>
-        <button onClick={diskInfo}>Disk information</button>
+        <button className='btn_info' onClick={diskInfo}>Disk information</button>
         
         {hideDisk && beDisk && ( //check if the info needs to be shown
         <div className='disk_box'>
@@ -142,7 +142,7 @@ const readDir = ()=>{
         <br></br>
         <div className='file_div'>
         <input className='file' type="text" placeholder='File name' value={fileName} onChange={(e)=>setfileName(e.target.value)}></input>
-        <button onClick={readFile}>submit file</button>
+        <button className='btn_info' onClick={readFile}>submit file</button>
         </div>
         {hideFile && beFile && ( 
         <div className='file_box'>
@@ -161,7 +161,7 @@ const readDir = ()=>{
         <br></br>
         <div className='dir_div'>
         <input className='dir' type="text" placeholder='Directory name' value={dirName} onChange={(e)=>setdirName(e.target.value)}></input>
-        <button onClick={readDir}>submit directory</button>
+        <button className='btn_info' onClick={readDir}>submit directory</button>
         </div>
         {hideDir && beDir && ( 
         <div className='dir_box'>

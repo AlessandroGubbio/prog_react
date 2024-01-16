@@ -11,6 +11,7 @@ function Admin (){
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [hide, setHide] = useState(false);
+  const [hideU, setHideU] = useState(false);
 
 
   const showAccounts = () =>{
@@ -41,7 +42,7 @@ function Admin (){
   }
 
   const modify = () =>{
-    
+    setHideU(!hideU)
   }
 
   const deleteU = () =>{
@@ -70,7 +71,7 @@ function Admin (){
       <hr></hr>
     <div className='login'>
       <div className='acc'>
-      <button className='show_button' onClick={showAccounts}>Show all Users</button>
+      <button className='btn_info' onClick={showAccounts}>Show all Users</button>
       {hide && accounts &&(
         <div className='users_div'>
           <ul className='users'>
@@ -93,17 +94,27 @@ function Admin (){
         <div><span className='nn'>Create and Update:</span> Insert username and password</div>
         <br/>
         <div><span className='nn'>Delete:</span> Insert username</div>
-        <div className='input_crud'>
-          <p style={{color: 'red'}}>{error}</p>
-          <p style={{color: 'rgb(0, 239, 68)'}}>{success}</p>
-          <input className='i_crud' value={username} type='text' placeholder='Username' onChange={(e) => setUsername(e.target.value)}></input>
-          <br/>
-          <input className='i_crud' value={password} type='text' placeholder='Password' onChange={(e) => setPassword(e.target.value)}></input>
+        <div className='flexx'>
+          <div className='input_crud'>
+            <p style={{color: 'red'}}>{error}</p>
+            <p style={{color: 'rgb(0, 239, 68)'}}>{success}</p>
+            <input className='i_crud' value={username} type='text' placeholder='Username' onChange={(e) => setUsername(e.target.value)}></input>
+            <br/>
+            <input className='i_crud' value={password} type='text' placeholder='Password' onChange={(e) => setPassword(e.target.value)}></input>
+            </div>
+            {hideU &&(
+            <div className='new_info'>
+              <input className='i_crud'placeholder='New Username'></input>
+              <br></br>
+              <input className='i_crud' placeholder='New Password'></input>
+              <button className='up_btn'>Submit</button>
+            </div>
+            )}
         </div>
         <div className='buttons'>
           <button className='crud_c' onClick={create}>Create</button>
           
-          <button className='crud_u'>Update</button>
+          <button className='crud_u' onClick={modify}>Update</button>
           
           <button className='crud_d' onClick={deleteU}>Delete</button>
           
