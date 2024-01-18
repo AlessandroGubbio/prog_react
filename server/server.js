@@ -14,21 +14,9 @@ app.use(cors())
 app.use(bobyParser.urlencoded({extended: false}))
 app.use(bobyParser.json())
 
-app.get('/', (req, res) => {
-  
-  exec("df", (error, out) => {
-    if (error) {
-        console.log(`error: ${error.message}`);
-        return;
-    }
-    const totalDisk = out
-});
 
-  
-  const useDisk = 6
 
-  res.send("")
-})
+
 
 app.get('/disk', (req, res) => {
   exec('wmic logicaldisk get size,freespace', (error, stdout)=>{
@@ -150,20 +138,38 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-app.post('/modify', (req, res)=>{
+app.post('/modify', async (req, res)=>{
   try {
     const {username, password, user, pass} = req.body;
 
-    const validateUser = client.query("UPDATE users SET username=$1, password=$2 WHERE username=$3 AND password=$4" 
+    const validateUser = await client.query("UPDATE users SET username=$1, password=$2 WHERE username=$3 AND password=$4" 
     , [username, password, user, pass]);
-    if((validateUser).rows.length > 0){
+    
+    //on the update the rows will be 0 so the check should be done on rowCount 
+    if(validateUser.rowCount > 0){
       res.json({ success: true, message: 'Modification successful' });
     }else{
       res.status(401).json({ success: false, message: 'Invalid username or password' });
     }
   } catch (error) {
     console.error('Error modifying info:', error);
-      res.status(500).json({ success: false, message: 'Internal Server Error' });
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+})
+
+app.post('/update', async (req,res)=>{
+  try {
+    const {username, password, n_user, n_pass} = req.body;
+    const validateUser = await client.query("UPDATE users SET username=$1, password=$2 WHERE username=$3 AND password=$4" 
+    , [n_user, n_pass, username, password]);
+    if(validateUser.rowCount > 0){
+      res.json({ success: true, message: 'Modification successful' });
+    }else{
+      res.status(401).json({ success: false, message: 'Invalid username or password' });
+    }
+  } catch (error) {
+    console.error('Error modifying info:', error);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 })
 

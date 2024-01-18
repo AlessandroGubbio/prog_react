@@ -12,22 +12,22 @@ function Modify () {
 
   const modify = async () =>{
     try {
-      await axios.post("/modify", {username, password, user, pass})
-      navigate("/Info")
+      await axios.post("/modify", {username, password, user, pass});
+      navigate("/Info");
       
-    } catch (err) {
-      setError('Invalid email or password. Modification unsuccesfull');
-      console.log(err)
+    } catch (error) {
+      setError('Invalid email or password. Modification unsuccesful');
+      console.log(error);
     }
   }
 
   const deleteU = () =>{
     try {
-      axios.post("/delete", {user})
-      navigate("/SignUp")
+      axios.post("/delete", {user});
+      navigate("/SignUp");
       
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
 

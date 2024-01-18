@@ -8,8 +8,14 @@ function Admin (){
   const [accounts, setAccounts] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [n_user, setN_user] = useState("");
+  const [n_pass, setN_pass] = useState("");
+
+
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
+
+
   const [hide, setHide] = useState(false);
   const [hideU, setHideU] = useState(false);
 
@@ -41,9 +47,26 @@ function Admin (){
     } 
   }
 
-  const modify = () =>{
+  const modify = async () =>{
     setHideU(!hideU)
   }
+
+  const update = async ()=>{
+    try {
+      await axios.post("/update", {username, password, n_user, n_pass}).then(
+      setUsername(''),
+      setPassword(''),
+      setN_pass(''),
+      setN_user(''),
+      setSuccess('Update successful')
+      )
+    } catch (error) {
+      setError('Invalid email or password. Modification unsuccesfull');
+      console.log(error);
+    }
+    
+  }
+  
 
   const deleteU = () =>{
     try {
@@ -66,7 +89,6 @@ function Admin (){
         <h1>
           Admin 
         </h1>
-
       </div>
       <hr></hr>
     <div className='login'>
@@ -94,20 +116,20 @@ function Admin (){
         <div><span className='nn'>Create and Update:</span> Insert username and password</div>
         <br/>
         <div><span className='nn'>Delete:</span> Insert username</div>
+        <p style={{color: 'red'}}>{error}</p>
+        <p style={{color: 'rgb(0, 239, 68)'}}>{success}</p>
         <div className='flexx'>
           <div className='input_crud'>
-            <p style={{color: 'red'}}>{error}</p>
-            <p style={{color: 'rgb(0, 239, 68)'}}>{success}</p>
             <input className='i_crud' value={username} type='text' placeholder='Username' onChange={(e) => setUsername(e.target.value)}></input>
             <br/>
             <input className='i_crud' value={password} type='text' placeholder='Password' onChange={(e) => setPassword(e.target.value)}></input>
             </div>
             {hideU &&(
             <div className='new_info'>
-              <input className='i_crud'placeholder='New Username'></input>
+              <input className='i_crud'placeholder='New Username' value={n_user} onChange={(e) => setN_user(e.target.value)}></input>
               <br></br>
-              <input className='i_crud' placeholder='New Password'></input>
-              <button className='up_btn'>Submit</button>
+              <input className='i_crud' placeholder='New Password'value={n_pass} onChange={(e) => setN_pass(e.target.value)}></input>
+              <button className='up_btn'onClick={update}>Submit</button>
             </div>
             )}
         </div>
