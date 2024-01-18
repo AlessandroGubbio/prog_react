@@ -93,8 +93,8 @@ const readDir = ()=>{
         <div className='cpu_box'>
           <div className='cpu_info'>
             <p>Number of Cpus available: {beData.numberCpu}</p>
-            <p>Total Cpu: {beData.totCpus} Gh</p>
-            <p>Cpu Usage (0 on Windows): {beData.cpuUsage}</p>
+            <p>Total Cpu: {beData.totCpus}</p>
+            <p>Cpu Usage: {beData.cpuUsage}%</p>
           </div>
         </div>
         )

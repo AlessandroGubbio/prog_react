@@ -29,17 +29,27 @@ app.get('/disk', (req, res) => {
 })
 
 app.get("/cpu", (req, res)=>{
+
+  // CAMBIO DOPO CHE ABBIAMO CORRETTO IN CLASSE
   const numberCpus = os.availableParallelism()
 
-  const cpus = os.cpus()
-  let total = 0;
-  for(const cpu of cpus){
-    total += cpu.speed
-  }
-  const totalCpu = (total/1024).toFixed(2) //GHz
-  const useCpu = os.loadavg()[0] //returns 0 on Windows
+  const cpuUsage = os.cpus();
 
-  res.json({"numberCpu": numberCpus, "totCpus": totalCpu, "cpuUsage": useCpu})
+  const totalNonIdleTime = cpuUsage.reduce((total, core) => {
+      return total + core.times.user + core.times.nice + core.times.sys;
+  }, 0);
+
+  const totalCpuTime = cpuUsage.reduce((total, core) => {
+      return total + core.times.user + core.times.nice + core.times.sys + core.times.idle;
+  }, 0);
+
+  const usedCpu = ((totalNonIdleTime / totalCpuTime) * 100).toFixed(2);
+
+
+  
+  const totalCpu = (totalCpuTime).toFixed(2) //GHz
+
+  res.json({"numberCpu": numberCpus, "totCpus": totalCpu, "cpuUsage": usedCpu})
 });
 
 
