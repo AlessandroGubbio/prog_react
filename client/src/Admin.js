@@ -75,7 +75,7 @@ function Admin (){
         setPassword(''),
         setSuccess('The User has been Successfully Deleted')
       ).catch(err =>{
-        setError('')
+        setError('Error deleting account')
         console.log(err)
       })
     } catch (err) {
@@ -149,6 +149,7 @@ function Admin (){
     <br/> 
     <br/> 
     <br/> 
+    
     </>
   )
 }

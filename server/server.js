@@ -22,7 +22,7 @@ app.get('/disk', (req, res) => {
   exec('wmic logicaldisk get size,freespace', (error, stdout)=>{
     const disk = stdout
     const diskInfo = disk.trim().split('\n')[1].split('  ')
-    const free = ((diskInfo[1]-diskInfo[0])/(1024*1024*1204)).toFixed(2);
+    const free = ((diskInfo[1]-diskInfo[0])/(1024*1024*1024)).toFixed(2);
     const tot = (diskInfo[1]/(1024*1024*1024)).toFixed(2);
     res.json({"use": free, "tot": tot})
   })
@@ -42,6 +42,8 @@ app.get("/cpu", (req, res)=>{
   res.json({"numberCpu": numberCpus, "totCpus": totalCpu, "cpuUsage": useCpu})
 });
 
+
+
 app.get("/ram", (req, res)=>{
   const totalRam = (os.totalmem()/1073741824).toFixed(2) //Gb
   const useRam = ((os.totalmem() - os.freemem())/1073741824).toFixed(2) //Gb
@@ -52,8 +54,8 @@ app.get("/ram", (req, res)=>{
 
 app.post("/readFile", (req, res)=>{
   const file = req.body.fileName;
-  //const paths = 'C:/Users/Studente1.1/Downloads/tmp/';
-  const paths = "C:\Users\agubb\Downloads"
+  const paths = 'C:/Users/Studente1.1/Downloads/tmp/';
+  //const paths = "C:\Users\agubb\Downloads"
   const filepath = paths+file+'.txt';
   fs.readFile(filepath, 'utf-8', (err, data) => {
     if (err) {
@@ -179,7 +181,7 @@ app.post('/delete', async (req, res)=>{
     client.query("DELETE FROM users WHERE username = $1", [user])
   } catch (error) {
     console.error('Error deleting user:', error);
-      res.status(500).json({ success: false, message: 'Internal Server Error' });
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 })
 

@@ -23,9 +23,11 @@ function Modify () {
 
   const deleteU = () =>{
     try {
-      axios.post("/delete", {user});
-      navigate("/SignUp");
-      
+      axios.post("/delete", {user}).then(
+        navigate("/SignUp")
+      ).catch(err =>{
+        setError('Error')
+      })
     } catch (err) {
       console.log(err);
     }

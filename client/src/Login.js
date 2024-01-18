@@ -28,7 +28,7 @@ const Login = () => {
   return (
     <>
     <div className='navbar'>
-        <h1>
+        <h1 className='login_h'>
           Login 
         </h1>
 
